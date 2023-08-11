@@ -1,5 +1,13 @@
+import { Hero } from "./components/Hero";
+import { FeaturedProducts } from "./components/FeaturedProducts";
+import { Testimonials } from "./components/Testimonials";
+
 export const HomePage = () => {
   return (
-    <div>Home</div>
+    <main>
+      <Hero />
+      <FeaturedProducts />
+      <Testimonials />
+    </main>
   )
 }
