@@ -1,27 +1,28 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle";
-import { useFilter } from "../../context/FilterContext";
-import { ProductCard } from "../../components/";
+import { useFilter } from "../../context";
+import { ProductCard } from "../../components";
 import { FilterBar } from "./components/FilterBar";
 
-export const ProductList = () => {
+export const ProductsList = () => {
   const { products, initialProductList } = useFilter();
-
   const [show, setShow] = useState(false);
   const search = useLocation().search;
   const searchTerm = new URLSearchParams(search).get("q");
   useTitle("Explore eBooks Collection");
+ 
 
-    useEffect(() => {
-      async function fetchProducts(){
-        const response = await fetch(`http://localhost:8000/products?name_like=${ searchTerm ? searchTerm : "" }`);
-        const data = await response.json();
-        initialProductList(data);
-      }
-      fetchProducts();
-    }, [searchTerm])
+  useEffect(() => {
+    async function fetchProducts(){
+      const response = await fetch(`http://localhost:8000/products?name_like=${searchTerm ? searchTerm : ""}`);
+      const data = await response.json()
+      
+      initialProductList(data);
+    }
+    fetchProducts();
+    // eslint-disable-next-line
+  }, [searchTerm]);
 
   return (
     <main>
@@ -38,12 +39,12 @@ export const ProductList = () => {
           <div className="flex flex-wrap justify-center lg:flex-row">
             { products.map((product) => (
               <ProductCard key={product.id} product={product} />
-            ))}
+            )) }            
           </div>  
         </section>
-        
-      { show && <FilterBar setShow={setShow} /> }
 
-      </main> 
+        { show && <FilterBar setShow={setShow} /> }
+
+    </main> 
   )
 }
