@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle";
+import { useFilter } from "../../context/FilterContext";
 import { ProductCard } from "../../components/";
 import { FilterBar } from "./components/FilterBar";
 
 export const ProductList = () => {
+  // const { productList } = useFilter();
 
   const [show, setShow] = useState(false);
   const [products, ShowProducts] = useState([]);
