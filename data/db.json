@@ -289,6 +289,12 @@
       "password": "$2a$10$WgElLcnkdGyznDqPLr5fyOEKqHb1xyk7z77FrzF9RqlY1e8n.w5lu",
       "name": "Colin",
       "id": 2
+    },
+    {
+      "email": "colinbeltz@gmail.com",
+      "password": "$2a$10$E9LxRz2O5wHK9O1CTdkwlOei6OWoDHRVPYr07/ZFLI28qdo/eUG3a",
+      "name": "Colin",
+      "id": 3
     }
   ]
 }
