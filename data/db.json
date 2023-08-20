@@ -283,6 +283,12 @@
       "password": "$2a$10$K9aEH3/VDb2QU/EsjrHGJO7X5JxCcg0bMAnBtyT3kBW9FL7FnnygO",
       "name": "Shubham Sarda",
       "id": 1
+    },
+    {
+      "email": "colinbeltz@icloud.com",
+      "password": "$2a$10$WgElLcnkdGyznDqPLr5fyOEKqHb1xyk7z77FrzF9RqlY1e8n.w5lu",
+      "name": "Colin",
+      "id": 2
     }
   ]
 }
