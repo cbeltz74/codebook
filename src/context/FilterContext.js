@@ -1,5 +1,4 @@
-import { createContext, useReducer } from "react";
-import { useContext } from "react";
+import { createContext, useContext, useReducer } from "react"
 import { filterReducer } from "../reducers";
 
 const filterInitialState = {
@@ -29,11 +28,11 @@ export const FilterProvider = ({children}) => {
     }
 
     function inStock(products){
-        return state.onlyInStock ? products.filter(product => product.in_stock === true): products;
+        return state.onlyInStock ? products.filter(product => product.in_stock === true) : products;
     }
-
+    
     function sort(products){
-        if(state.sortBy === "lowtohigh" ){
+        if(state.sortBy === "lowtohigh"){
             return products.sort((a, b) => Number(a.price) - Number(b.price));
         }
         if(state.sortBy === "hightolow"){
@@ -61,10 +60,10 @@ export const FilterProvider = ({children}) => {
     const filteredProductList = rating(sort(inStock(bestSeller(state.productList))));
 
     const value = {
-        state,
+        state, 
         dispatch,
         products: filteredProductList,
-        initialProductList,
+        initialProductList
     }
     return (
         <FilterContext.Provider value={value}>
@@ -74,6 +73,6 @@ export const FilterProvider = ({children}) => {
 }
 
 export const useFilter = () => {
-   const context = useContext(FilterContext);
-   return context;
+    const context = useContext(FilterContext);
+    return context;
 }
