@@ -1,6 +1,6 @@
-import { useCart } from "../../../context";
-import { useEffect } from "react";
 import { useState } from "react";
+import { useEffect } from "react";
+import { useCart } from "../../../context";
 
 export const Checkout = ({setCheckout}) => {
   const { total } = useCart();
@@ -9,7 +9,7 @@ export const Checkout = ({setCheckout}) => {
   useEffect(() => {
     const token = JSON.parse(sessionStorage.getItem("token"));
     const cbid = JSON.parse(sessionStorage.getItem("cbid"));
-  
+
     async function getUser(){
         const response = await fetch(`http://localhost:8000/600/users/${cbid}`, {
             method: "GET",
@@ -18,8 +18,9 @@ export const Checkout = ({setCheckout}) => {
         const data = await response.json();
         setUser(data);
     }
+
     getUser();
-  }, [])
+  }, []);
 
   return (
     <section>
@@ -40,11 +41,11 @@ export const Checkout = ({setCheckout}) => {
                     <form className="space-y-6" >
                     <div>
                         <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name:</label>
-                        <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:value-gray-400 dark:text-white" value={user.name} disabled required="" />
+                        <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:value-gray-400 dark:text-white" value={user.name || "Undefined"} disabled required="" />
                     </div>
                     <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Email:</label>
-                        <input type="text" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:value-gray-400 dark:text-white" value={user.email} disabled required="" />
+                        <input type="text" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:value-gray-400 dark:text-white" value={user.email || "backup@example.com"} disabled required="" />
                     </div>
                     <div>
                         <label htmlFor="card" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Card Number:</label>
