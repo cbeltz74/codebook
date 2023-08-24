@@ -15,7 +15,7 @@ export const DashboardCard = ({order}) => {
                       <img className="w-32 rounded" src={product.poster} alt={product.name} />
                   </Link>
                   <div className="">
-                        <Link to={`/products/${product.id}1`}>
+                        <Link to={`/products/${product.id}`}>
                           <p className="text-lg ml-2 dark:text-slate-200">{product.name}</p>
                       </Link>
                       <div className="text-lg m-2 dark:text-slate-200">
