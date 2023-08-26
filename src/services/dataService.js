@@ -13,16 +13,23 @@ export async function getUser(){
             headers: {"Content-Type": "application/json", Authorization: `Bearer ${browserData.token}`}
         }
         const response = await fetch(`http://localhost:8000/600/users/${browserData.cbid}`, requestOptions);
+        if(!response.ok){
+            throw { message: response.statusText, status: response.status }
+        }
         const data = await response.json();
         return data;
 }
 
 export async function getUserOrders(){
     const browserData = getSession();
-    const response = await fetch(`http://localhost:8000/660/orders?${browserData.cbid}`, {
+    const requestOptions = {
         method: "GET",
         headers: {"Content-Type": "application/json", Authorization: `Bearer ${browserData.token}`}
-    });
+    }
+    const response = await fetch(`http://localhost:8000/660/orders?${browserData.cbid}`, requestOptions);
+    if(!response.ok){
+        throw { message: response.statusText, status: response.status }
+    }
     const data = await response.json();
     return data;
 }
@@ -39,12 +46,17 @@ export async function createOrder(cartList, total, user){
             id: user.id
         }
     }
+    const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${browserData.token}`},
+        body: JSON.stringify(order)
+    }    
     
-    const response = await fetch("http://localhost:8000/660/orders", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${browserData.token}`},
-    body: JSON.stringify(order)
-    })
+    const response = await fetch("http://localhost:8000/660/orders", requestOptions);
+
+    if(!response.ok){
+        throw { message: response.statusText, status: response.status }
+    }
     const data = await response.json();
     return data;
 }

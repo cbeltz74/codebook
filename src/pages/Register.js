@@ -15,14 +15,17 @@ export const Register = () => {
 
     async function handleRegister(event){
         event.preventDefault();
-        
-        const authDetail = {
+        try{
+          const authDetail = {
             name: name.current.value,
             email: email.current.value,
             password: password.current.value
         }
         const data = await register(authDetail);
         data.accessToken ? navigate ("/products") : toast.error(data);
+        } catch(error){
+          toast.error(error.message, {closeButton: true, position: "bottom-center"});
+        }
     }
 
 
