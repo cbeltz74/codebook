@@ -1,11 +1,10 @@
-import { Link, useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react";
-import { logout } from "../../services"
-import { getUser } from "../../services";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { getUser, logout } from "../../services";
 
 export const DropdownLoggedIn = ({setDropdown}) => {
-
     const navigate = useNavigate();
     const [user, setUser] = useState({});
 
@@ -15,16 +14,16 @@ export const DropdownLoggedIn = ({setDropdown}) => {
                 const data = await getUser();
                 data.email ? setUser(data) : handleLogout();
             } catch(error){
-                toast.error(error.message, {closeButton: true, position: "bottom-center"});
-            }
+                toast.error(error.message, { closeButton: true, position: "bottom-center" });
+            }            
         }
         fetchData();
-    }, [])
-
+    }, []); // eslint-disable-line
+    
     function handleLogout(){
         logout();
-        navigate("/");
         setDropdown(false);
+        navigate("/");
     }
 
   return (
@@ -34,10 +33,10 @@ export const DropdownLoggedIn = ({setDropdown}) => {
         </div>
         <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
             <li>
-                <Link onClick={(() => setDropdown(false))} to="/products" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All eBooks</Link>
+                <Link onClick={() => setDropdown(false)} to="/products" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">All eBooks</Link>
             </li>
             <li>
-                <Link onClick={(() => setDropdown(false))} to="/dashboard" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
+                <Link onClick={() => setDropdown(false)} to="/dashboard" className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
             </li>
         </ul>
         <div className="py-1">
